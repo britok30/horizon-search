@@ -23,6 +23,7 @@ export const Results = () => {
                 `${location.pathname}/q=${searchTerm}&num=${TOTALRESULTS}`
             );
         }
+        // eslint-disable-next-line
     }, [searchTerm, location.pathname]);
 
     if (isLoading) return <Loading />;
@@ -66,7 +67,9 @@ export const Results = () => {
             return (
                 <div className="flex flex-wrap justify-center">
                     {results?.map((video, index) => (
-                        <VideoResult video={video} index={index} />
+                        <div key={index} className="p-2">
+                            <VideoResult video={video} />
+                        </div>
                     ))}
                 </div>
             );
