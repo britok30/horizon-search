@@ -3,12 +3,16 @@ import ReactPlayer from 'react-player';
 
 const VideoResult = ({ video }) => {
     return (
-        <ReactPlayer
-            url={video.additional_links?.[0].href}
-            controls
-            width="355px"
-            height="200px"
-        />
+        <>
+            {video?.additional_links?.[0].href && (
+                <ReactPlayer
+                    url={video.additional_links?.[0].href}
+                    controls
+                    width="355px"
+                    height="200px"
+                />
+            )}
+        </>
     );
 };
 

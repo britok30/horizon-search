@@ -14,14 +14,26 @@ export const Search = () => {
     }, [debouncedValue]);
 
     return (
-        <div className="relatvie mt-4 w-full flex flex-col items-center">
-            <input
-                type="text"
-                className="rounded-md dark:bg-gray-500 w-1/2 sm:w-96 h-10 border shadow-sm outline-none focus:outline-none p-6 text-black hover:shadow-lg"
-                placeholder="Search Horizon or type URL"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-            />
+        <div className="relative mt-4 w-full flex flex-col items-center">
+            <div className="flex justify-center items-center">
+                <input
+                    type="text"
+                    className="rounded-full dark:bg-gray-500 w-1/2 sm:w-96 h-10 border shadow-sm outline-none focus:outline-none p-6 text-black hover:shadow-lg"
+                    placeholder="Search Horizon or type URL"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                />
+                {text !== '' && (
+                    <button
+                        type="button"
+                        className="text-2xl text-gray-500 ml-4"
+                        onClick={() => setText('')}
+                    >
+                        X
+                    </button>
+                )}
+            </div>
+
             <Links />
         </div>
     );
