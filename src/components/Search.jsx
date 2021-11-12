@@ -18,7 +18,7 @@ export const Search = () => {
             <div className="flex justify-center items-center">
                 <input
                     type="text"
-                    className="rounded-full dark:bg-gray-500 w-1/2 sm:w-96 h-10 border shadow-sm outline-none focus:outline-none p-6 text-black hover:shadow-lg"
+                    className="rounded-full dark:bg-gray-500 sm:w-96 h-10 border shadow-sm outline-none focus:outline-none p-6 text-black hover:shadow-lg"
                     placeholder="Search Horizon or type URL"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
