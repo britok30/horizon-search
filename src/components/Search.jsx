@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDebounce } from 'use-debounce';
 import { useResultContext } from '../contexts/ResultContextProvider';
 import Links from './Links';
 
 export const Search = () => {
-    const { searchTerm } = useResultContext();
+    const [text, setText] = useState('Tesla');
+    const { setSearchTerm } = useResultContext();
+    const [debouncedValue] = useDebounce(text, 300);
+
+    useEffect(() => {
+        if (debouncedValue) setSearchTerm(debouncedValue);
+        // eslint-disable-next-line
+    }, [debouncedValue]);
+
     return (
-        <div className="mt-4 w-full flex flex-col items-center">
+        <div className="relatvie mt-4 w-full flex flex-col items-center">
             <input
                 type="text"
-                className="p-2 rounded-md focus:outline-none dark:bg-gray-500 w-1/2"
-                placeholder="Search..."
-                onChange={(e) => e.target.value}
+                className="rounded-md dark:bg-gray-500 w-1/2 sm:w-96 h-10 border shadow-sm outline-none focus:outline-none p-6 text-black hover:shadow-lg"
+                placeholder="Search Horizon or type URL"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
             />
             <Links />
         </div>
