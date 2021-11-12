@@ -4,6 +4,9 @@ import ReactPlayer from 'react-player';
 
 import { useResultContext } from '../contexts/ResultContextProvider';
 import { Loading } from './Loading';
+import { NewsResult } from './NewsResult';
+import { ImageResult } from './ImageResult';
+import { SearchResult } from './SearchResult';
 
 export const Results = () => {
     const { results, isLoading, getResults, searchTerm } = useResultContext();
@@ -28,20 +31,13 @@ export const Results = () => {
         case '/search':
             return (
                 <div className="flex flex-wrap justify-between space-y-6 sm:px-56">
-                    {results?.results?.map(({ link, title }, index) => {
+                    {results?.map(({ link, title }, index) => {
                         return (
-                            <div key={index} className="md:w-2/5 w-full">
-                                <a href={link} target="_blank" rel="noreferrer">
-                                    <p className="text-sm">
-                                        {link.length > 30
-                                            ? link.substring(0, 30)
-                                            : link}
-                                    </p>
-                                    <p className="text-lg hover:underline dark:text-blue-300 text-blue-700">
-                                        {title}
-                                    </p>
-                                </a>
-                            </div>
+                            <SearchResult
+                                link={link}
+                                title={title}
+                                index={index}
+                            />
                         );
                     })}
                 </div>
@@ -49,31 +45,31 @@ export const Results = () => {
         case '/images':
             return (
                 <div className="flex flex-wrap justify-center items-center">
-                    {results?.image_results?.map(
-                        ({ image, link: { href, title } }, index) => (
-                            <a
-                                className="sm:p-3 p-5"
-                                href={href}
-                                key={index}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <img
-                                    className="rounded"
-                                    src={image?.src}
-                                    alt={title}
-                                    loading="lazy"
-                                />
-                                <p className="w-36 break-words text-sm mt-2">
-                                    {title}
-                                </p>
-                            </a>
-                        )
-                    )}
+                    {results?.map(({ image, link: { href, title } }, index) => (
+                        <ImageResult
+                            image={image}
+                            href={href}
+                            title={title}
+                            index={index}
+                        />
+                    ))}
                 </div>
             );
         case '/news':
-            return 'SEARCH';
+            return (
+                <div className="flex flex-wrap justify-between space-y-6 sm:px-56 items-center">
+                    {results?.map(({ links, id, source, title }) => {
+                        return (
+                            <NewsResult
+                                id={id}
+                                links={links}
+                                source={source}
+                                title={title}
+                            />
+                        );
+                    })}
+                </div>
+            );
         case '/videos':
             return 'SEARCH';
 
