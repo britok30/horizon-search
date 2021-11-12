@@ -11,7 +11,7 @@ import VideoResult from './VideoResult';
 export const Results = () => {
     const { results, isLoading, getResults, searchTerm } = useResultContext();
     const location = useLocation();
-    const TOTALRESULTS = 40;
+    const TOTAL_RESULTS = 30;
 
     useEffect(() => {
         if (!searchTerm) return;
@@ -20,7 +20,7 @@ export const Results = () => {
             getResults(`/search/q=${searchTerm} videos`);
         } else {
             getResults(
-                `${location.pathname}/q=${searchTerm}&num=${TOTALRESULTS}`
+                `${location.pathname}/q=${searchTerm}&num=${TOTAL_RESULTS}`
             );
         }
         // eslint-disable-next-line
