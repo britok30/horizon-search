@@ -11,6 +11,7 @@ export const Navbar = ({ darkTheme, setDarkTheme }) => {
                         Horizon 🔎
                     </p>
                 </Link>
+                <Search />
                 <button
                     type="button"
                     className="text-xl dark:bg-gray-50 dark:text-gray-900 bg-white border w-24 rounded-md px-2 py-1 hover:shadow-lg transition-all duration-300 ease-in-out flex justify-center items-center"
@@ -18,7 +19,6 @@ export const Navbar = ({ darkTheme, setDarkTheme }) => {
                 >
                     {darkTheme ? 'Light 💡' : 'Dark 🌙'}
                 </button>
-                <Search />
             </div>
         </div>
     );
