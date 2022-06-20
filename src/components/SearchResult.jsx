@@ -2,7 +2,7 @@ import React from "react";
 
 export const SearchResult = (result) => {
   const { result: searchResult } = result;
-  console.log(searchResult);
+
   return (
     <div className="md:w-2/5 w-full">
       <a href={searchResult.link} target="_blank" rel="noreferrer">
