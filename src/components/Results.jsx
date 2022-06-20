@@ -33,15 +33,16 @@ export const Results = () => {
             return (
                 <div className="flex flex-wrap justify-between space-y-6 sm:px-56">
                     {results?.map(({ link, title }, index) => (
-                        <SearchResult link={link} title={title} index={index} />
+                        <SearchResult key={index} link={link} title={title} index={index} />
                     ))}
                 </div>
             );
-        case '/images':
+        case '/image':
             return (
                 <div className="flex flex-wrap justify-center items-center">
                     {results?.map(({ image, link: { href, title } }, index) => (
                         <ImageResult
+                            key={title}
                             image={image}
                             href={href}
                             title={title}
@@ -55,6 +56,7 @@ export const Results = () => {
                 <div className="flex flex-wrap justify-between space-y-6 sm:px-56 items-center">
                     {results?.map(({ links, id, source, title }) => (
                         <NewsResult
+                            key={id}
                             id={id}
                             links={links}
                             source={source}

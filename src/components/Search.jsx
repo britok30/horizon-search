@@ -4,7 +4,7 @@ import { useResultContext } from '../contexts/ResultContextProvider';
 import Links from './Links';
 
 export const Search = () => {
-    const [text, setText] = useState('Tesla');
+    const [text, setText] = useState('Google');
     const { setSearchTerm } = useResultContext();
     const [debouncedValue] = useDebounce(text, 300);
 
@@ -18,7 +18,7 @@ export const Search = () => {
             <div className="flex justify-center items-center">
                 <input
                     type="text"
-                    className="rounded-full dark:bg-gray-500 sm:w-96 h-10 border shadow-sm outline-none focus:outline-none p-6 text-black hover:shadow-lg"
+                    className="rounded-lg dark:bg-gray-500 sm:w-96 h-10 border shadow-sm outline-none focus:outline-none p-6 text-black hover:shadow-lg"
                     placeholder="Search Horizon or type URL"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
