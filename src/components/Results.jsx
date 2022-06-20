@@ -6,7 +6,6 @@ import { Loading } from "./Loading";
 import { NewsResult } from "./NewsResult";
 import { ImageResult } from "./ImageResult";
 import { SearchResult } from "./SearchResult";
-import VideoResult from "./VideoResult";
 
 export const Results = () => {
   const { results, isLoading, getResults, searchTerm } = useResultContext();
@@ -16,11 +15,8 @@ export const Results = () => {
   useEffect(() => {
     if (!searchTerm) return;
 
-    if (location.pathname === "/videos") {
-      getResults(`/search/q=${searchTerm} videos`);
-    } else {
-      getResults(`${location.pathname}/q=${searchTerm}&num=${TOTAL_RESULTS}`);
-    }
+    getResults(`${location.pathname}/q=${searchTerm}&num=${TOTAL_RESULTS}`);
+
     // eslint-disable-next-line
   }, [searchTerm, location.pathname]);
 
@@ -54,16 +50,6 @@ export const Results = () => {
               source={source}
               title={title}
             />
-          ))}
-        </div>
-      );
-    case "/videos":
-      return (
-        <div className="flex flex-wrap justify-center">
-          {results?.map((video, index) => (
-            <div key={index} className="p-2">
-              <VideoResult video={video} />
-            </div>
           ))}
         </div>
       );
